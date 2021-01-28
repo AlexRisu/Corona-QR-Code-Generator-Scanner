@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CoronaQrCodeGenerator</string>
+    <string name="first_button_main">QR Code generieren</string>
+    <string name="second_button_main">QR Code scannen</string>
 </resources>
