@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+<CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.coronaqrcodegenerator.QRCodeGeneratorActivity">
+
+    <AppBarLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </AppBarLayout>
+
+
+    <FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+
+</CoordinatorLayout>
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.example.coronaqrcodegenerator.QRCodeGeneratorActivity"
+    tools:showIn="@layout/activity_qr_code_generator">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="TODO"
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:layout_editor_absoluteX="152dp"
+        tools:layout_editor_absoluteY="218dp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/generate_qr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="createQR"
+        android:text="Generate QR"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="92dp" />
+
+</LinearLayout>

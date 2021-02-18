@@ -1,5 +1,6 @@
 package com.example.coronaqrcodegenerator
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +12,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun routeToCodeCreator(view: View) {
-        println("Creator")
+        val qrCodeCreatorIntent: Intent = Intent(this, QRCodeGeneratorActivity::class.java);
+        startActivity(qrCodeCreatorIntent);
     }
 
     fun routeToCodeScanner(view: View) {
