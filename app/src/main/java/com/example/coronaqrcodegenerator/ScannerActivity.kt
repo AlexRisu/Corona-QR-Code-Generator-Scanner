@@ -1,6 +1,4 @@
 package com.example.coronaqrcodegenerator
-
-
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -21,10 +19,7 @@ class ScannerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_scanner)
 
         initRecyclerView()
-        people.add(Person("jaber", "01456485"))
-
         personAdapter.notifyDataSetChanged()
-
     }
 
 
@@ -41,7 +36,6 @@ class ScannerActivity : AppCompatActivity() {
 
     fun scanQRCode(view: View) {
         val integrator = IntentIntegrator(this)
-
         integrator.setOrientationLocked(false);
         integrator.initiateScan();
     }
