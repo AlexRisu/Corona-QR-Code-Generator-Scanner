@@ -14,12 +14,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun routeToCodeCreator(view: View) {
-        val qrCodeCreatorIntent: Intent = Intent(this, QRCodeGeneratorActivity::class.java);
-        startActivity(qrCodeCreatorIntent);
+        val generatorActivityIntent: Intent = Intent(this, GeneratorActivity::class.java);
+        startActivity(generatorActivityIntent);
     }
 
     fun routeToCodeScanner(view: View) {
-        println("Scanner")
+        val scannerActivityIntent: Intent = Intent(this, ScannerActivity::class.java);
+        startActivity(scannerActivityIntent);
     }
 
     companion object {

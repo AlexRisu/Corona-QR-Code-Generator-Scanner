@@ -1,6 +1,5 @@
 package com.example.coronaqrcodegenerator
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -15,13 +14,12 @@ import com.journeyapps.barcodescanner.BarcodeEncoder
 import java.io.IOException
 
 
-class QRCodeGeneratorActivity : Activity() {
+class GeneratorActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_qr_code_generator)
     }
 
-    @SuppressLint("ResourceType")
     @Throws(WriterException::class, IOException::class)
     fun createQR() {
         val imageView: ImageView = ImageView(applicationContext);
@@ -32,7 +30,7 @@ class QRCodeGeneratorActivity : Activity() {
         try {
             val bitMatrix: BitMatrix =
                 multiFormatWriter.encode(
-                    "${firstName} ${lastName} | ${telNumber}",
+                    "$firstName $lastName | $telNumber",
                     BarcodeFormat.QR_CODE,
                     200,
                     200
