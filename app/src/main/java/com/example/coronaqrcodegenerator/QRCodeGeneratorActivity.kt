@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
@@ -24,14 +25,22 @@ class QRCodeGeneratorActivity : Activity() {
     @Throws(WriterException::class, IOException::class)
     fun createQR() {
         val imageView: ImageView = ImageView(applicationContext);
-        val text: String = "TestQr"; // Whatever you need to encode in the QR code
+        val firstName: String = this.findViewById<TextView>(R.id.firstName).text.toString();
+        val lastName: String = this.findViewById<TextView>(R.id.lastName).text.toString();
+        val telNumber: String = this.findViewById<TextView>(R.id.telNumber).text.toString();
         val multiFormatWriter: MultiFormatWriter = MultiFormatWriter();
         try {
             val bitMatrix: BitMatrix =
-                multiFormatWriter.encode(text, BarcodeFormat.QR_CODE, 200, 200);
+                multiFormatWriter.encode(
+                    "${firstName} ${lastName} | ${telNumber}",
+                    BarcodeFormat.QR_CODE,
+                    200,
+                    200
+                );
             val barcodeEncoder: BarcodeEncoder = BarcodeEncoder();
             val bitmap: Bitmap = barcodeEncoder.createBitmap(bitMatrix);
             imageView.setImageBitmap(bitmap);
+            setContentView(R.layout.activity_qr_code_generated);
             this.findViewById<ImageView>(R.id.imageView).setImageBitmap(bitmap);
         } catch (e: WriterException) {
             e.printStackTrace();

@@ -2,4 +2,8 @@
     <string name="app_name">CoronaQrCodeGenerator</string>
     <string name="first_button_main">QR Code generieren</string>
     <string name="second_button_main">QR Code scannen</string>
+    <string name="lastName">Nachname</string>
+    <string name="firstName">Vorname</string>
+    <string name="exampleTelNumber">0815 12345</string>
+    <string name="generate_qr">Generate QR</string>
 </resources>

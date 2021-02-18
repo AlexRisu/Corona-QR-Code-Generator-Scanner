@@ -1,11 +1,13 @@
 package com.example.coronaqrcodegenerator
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -18,5 +20,13 @@ class MainActivity : AppCompatActivity() {
 
     fun routeToCodeScanner(view: View) {
         println("Scanner")
+    }
+
+    companion object {
+        private var instance: MainActivity? = null
+
+        fun applicationContext(): Context {
+            return instance!!.applicationContext
+        }
     }
 }
