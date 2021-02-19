@@ -1,4 +1,5 @@
 package com.example.coronaqrcodegenerator
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coronaqrcodegenerator.models.Person
+import com.example.coronaqrcodegenerator.models.persistence.PersonDbHelper
 import com.google.zxing.integration.android.IntentIntegrator
 
 
@@ -47,11 +49,17 @@ class ScannerActivity : AppCompatActivity() {
             if (result.contents == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
+                insertUserIntoDb()
                 Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
+    }
+
+    private fun insertUserIntoDb() {
+        val personDbHelper = PersonDbHelper(this)
+        personDbHelper.insertAll(people);
     }
 
 }

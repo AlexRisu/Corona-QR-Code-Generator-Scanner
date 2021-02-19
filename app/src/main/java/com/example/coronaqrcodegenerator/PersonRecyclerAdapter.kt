@@ -7,9 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coronaqrcodegenerator.models.Person
 
-class PersonRecyclerAdapter(private var items: List<Person> ) :
+class PersonRecyclerAdapter(private var items: List<Person>) :
     RecyclerView.Adapter<PersonRecyclerAdapter.PersonViewHolder>() {
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -27,16 +26,8 @@ class PersonRecyclerAdapter(private var items: List<Person> ) :
         return items.size
     }
 
-    class PersonViewHolder constructor(
-        itemView: View
-    ) : RecyclerView.ViewHolder(itemView) {
-
-        val person_name: TextView
-        val person_phone_number: TextView
-
-        init {
-            person_name = itemView.findViewById(R.id.person_name)
-            person_phone_number = itemView.findViewById(R.id.person_phone_number)
-        }
+    class PersonViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val person_name: TextView = itemView.findViewById(R.id.person_name)
+        val person_phone_number: TextView = itemView.findViewById(R.id.person_phone_number)
     }
 }
