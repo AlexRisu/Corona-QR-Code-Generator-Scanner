@@ -37,7 +37,6 @@ class PersonDbHelper(context: Context) :
         }
     }
 
-
     fun insertSingle(person: Person) {
         val contentValues = ContentValues()
         contentValues.put(PersonEntity.PersonEntry.COLUMN_NAME_NAME, person.name)

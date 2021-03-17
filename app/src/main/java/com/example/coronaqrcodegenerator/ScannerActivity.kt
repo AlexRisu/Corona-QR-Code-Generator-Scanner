@@ -13,28 +13,26 @@ import com.google.zxing.integration.android.IntentIntegrator
 
 
 class ScannerActivity : AppCompatActivity() {
+    private val personDbHelper = PersonDbHelper(this);
     private lateinit var personAdapter: PersonRecyclerAdapter
-    private var people = ArrayList<Person>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scanner)
 
         initRecyclerView()
-        personAdapter.notifyDataSetChanged()
     }
-
 
     private fun initRecyclerView() {
         val recycler = findViewById<RecyclerView>(R.id.recycler_view)
         recycler.apply {
             layoutManager = LinearLayoutManager(this@ScannerActivity)
-            personAdapter = PersonRecyclerAdapter(people)
+            personAdapter = PersonRecyclerAdapter(personDbHelper)
             adapter = personAdapter
         }
-
+        personAdapter.updateRecyclerView()
     }
-
 
     fun scanQRCode(view: View) {
         val integrator = IntentIntegrator(this)
@@ -42,24 +40,33 @@ class ScannerActivity : AppCompatActivity() {
         integrator.initiateScan();
     }
 
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (result != null) {
             if (result.contents == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
-                insertUserIntoDb()
-                Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
+                if (isUser(result.contents)) {
+                    insertUserIntoDb(result.contents)
+                    Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
+                }
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
-    private fun insertUserIntoDb() {
-        val personDbHelper = PersonDbHelper(this)
-        personDbHelper.insertAll(people);
+    private fun isUser(contents: String): Boolean {
+        return contents.toCharArray().contains('|')
     }
 
+    private fun insertUserIntoDb(contents: String) {
+        val personString = contents.split("|");
+        val userName = personString[0];
+        val phoneNumber = personString[1];
+        val toBeInsertedPerson = Person(userName, phoneNumber);
+
+        personDbHelper.insertSingle(toBeInsertedPerson);
+        personAdapter.updateRecyclerView()
+    }
 }
